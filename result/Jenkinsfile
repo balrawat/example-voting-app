@@ -1,0 +1,41 @@
+pipeline {
+
+    agent {
+       docker {
+	   image 'node:lts-slim'
+       }
+    }
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building result app...'
+		dir("result"){
+                	sh 'npm install'
+		}
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Testing result app..'
+		dir("result"){
+                	sh 'npm test'
+		}
+            }
+        }
+        
+        stage('Package') {
+            steps {
+                echo 'Packaging result app..'
+            }
+        }
+    }
+
+
+    post {
+        always{
+            echo "This is post step..."
+        }
+    }
+}
