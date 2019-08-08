@@ -42,10 +42,7 @@ pipeline {
       }
       stage('docker-package'){
           agent any
-          when{
-            changeset "**/vote/**"
-          }
-          steps{
+         steps{
             echo 'Packaging vote app with docker'
             script{
               docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
