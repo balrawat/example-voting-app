@@ -1,0 +1,45 @@
+pipeline {
+
+    agent any
+    
+    tools {
+        nodejs 'node12.8.0' 
+    }
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building result app..'
+		dir("result"){
+                	sh 'npm install'
+		}
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Testing result app..'
+		dir("worker"){
+                	sh 'npm test'
+		}
+            }
+        }
+        
+        stage('Package') {
+            steps {
+                echo 'Packaging result app..'
+	#	dir("worker"){
+         #       	sh 'mvn package -DskipTests'
+	#	}
+            }
+        }
+    }
+
+
+    post {
+        always{
+            echo "This is post step..."
+	    #archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        }
+    }
+}
