@@ -3,23 +3,25 @@ pipeline {
     agent any
     
     stages {
-        stage('one') {
+        stage('Build') {
             steps {
-                echo 'Stage 1 : Hello, Jenkins!'
-                sleep 5
+                echo 'Building worker app..'
+		dir("worker"){
+                	sh 'mvn compile'
+		}
             }
         }
         
-        stage('two') {
+        stage('Test') {
             steps {
-                echo 'Stage 2 : Hello, Jenkins!'
+                echo 'Testing worker app..'
                 sleep 3
             }
         }
         
-        stage('three') {
+        stage('Package') {
             steps {
-                echo 'Stage 3 : Hello, Jenkins!'
+                echo 'Packaging worker app..'
                 sleep 7
             }
         }
