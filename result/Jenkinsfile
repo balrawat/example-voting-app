@@ -28,9 +28,6 @@ pipeline {
         stage('Package') {
             steps {
                 echo 'Packaging result app..'
-	#	dir("worker"){
-         #       	sh 'mvn package -DskipTests'
-	#	}
             }
         }
     }
@@ -39,7 +36,6 @@ pipeline {
     post {
         always{
             echo "This is post step..."
-	    #archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
     }
 }
