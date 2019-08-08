@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building result app..'
+                echo 'Building result app...'
 		dir("result"){
                 	sh 'npm install'
 		}
