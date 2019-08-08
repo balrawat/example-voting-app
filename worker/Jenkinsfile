@@ -1,0 +1,34 @@
+pipeline {
+
+    agent any
+    
+    stages {
+        stage('one') {
+            steps {
+                echo 'Stage 1 : Hello, Jenkins!'
+                sleep 5
+            }
+        }
+        
+        stage('two') {
+            steps {
+                echo 'Stage 2 : Hello, Jenkins!'
+                sleep 3
+            }
+        }
+        
+        stage('three') {
+            steps {
+                echo 'Stage 3 : Hello, Jenkins!'
+                sleep 7
+            }
+        }
+    }
+
+
+    post {
+        always{
+            echo "This is post step..."
+        }
+    }
+}
