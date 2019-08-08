@@ -39,6 +39,7 @@ pipeline {
     post {
         always{
             echo "This is post step..."
+		archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
     }
 }
